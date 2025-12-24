@@ -1,8 +1,9 @@
-import {BrowserRouter as Router,Routes,Route,} from "react-router-dom";
+import {BrowserRouter as Router, Routes, Route, Link,} from "react-router-dom";
 import './App.css'
 import Home from "./Componenets/Home.tsx";
-import Customer from "./Componenets/Cunstomer.tsx";
+import Customer from "./Componenets/Customer.tsx";
 import Product from "./Componenets/Product.tsx";
+import Order from "./Componenets/Order.tsx";
 
 function App() {
 
@@ -24,17 +25,16 @@ function App() {
                       <div className="collapse navbar-collapse" id="navbarNav">
                           <ul className="navbar-nav">
                               <li className="nav-item">
-                                  <a className="nav-link active" aria-current="page" href="#">Home</a>
+                                  <Link className="nav-link active" aria-current="page" to='/'>Home</Link>
                               </li>
                               <li className="nav-item">
-                                  <a className="nav-link" href="#">Features</a>
+                                  <Link className="nav-link" to='/customer'>Customer</Link>
                               </li>
                               <li className="nav-item">
-                                  <a className="nav-link" href="#">Pricing</a>
+                                  <Link className="nav-link" to='/orders'>Order Management</Link>
                               </li>
                               <li className="nav-item">
-                                  <a className="nav-link disabled" href="#"
-                                     aria-disabled="true">Disabled</a>
+                                  <Link className="nav-link " to='/products'>Products</Link>
                               </li>
                           </ul>
                       </div>
@@ -46,6 +46,7 @@ function App() {
                   <Route path='/' element={<Home/>}/>
                   <Route path='/customer' element={<Customer/>}/>
                   <Route path='/product' element={<Product/>}/>
+                  <Route path='/order' element={<Order/>}/>
               </Routes>
           </div>
       </Router>

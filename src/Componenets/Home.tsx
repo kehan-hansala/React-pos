@@ -1,5 +1,7 @@
+import DefaultCard from "./Crads/DefaultCrad.tsx"
+import DefaultChart from "./Crads/DefaultChart.tsx"
+import MinQtyCard from "./Crads/MinQtyCard.tsx";
 
-import DefaultCard from "./Crads/DefaultCrad.tsx";
 
 function Home() {
 
@@ -43,7 +45,7 @@ function Home() {
                         <DefaultCard
                             thumbnail='https://img.freepik.com/premium-photo/black-friday-composition-with-three-bags-cart_23-2147709333.jpg?w=740'
                             description='This is a wider card with supporting'
-                            title='Orders'
+                            title='Income'
                             value={250}
                             key={1}
                         />
@@ -51,6 +53,26 @@ function Home() {
 
 
                 </div>
+                <br/>
+                <div className="row">
+                    <div className="col-12 col-md-9">
+                        <div className="context">
+                            <DefaultChart/>
+                        </div>
+                    </div>
+
+                    <div className="col-12 col-md-3">
+                        <MinQtyCard/>
+                        <MinQtyCard/>
+                        <MinQtyCard/>
+                        <MinQtyCard/>
+                        <MinQtyCard/>
+
+                    </div>
+
+
+                </div>
+
             </div>
 
 
