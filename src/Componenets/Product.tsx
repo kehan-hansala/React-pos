@@ -38,19 +38,14 @@ function Product() {
                         </div>
                     </div>
 
-                    <div className="col-12 col-sm-6 col-md-4" style={styleObj}>
-                        <div className="form-group">
-                            <label htmlFor="description">Product description</label>
-                            <input type="text" className='form-control' id='description'/>
-                        </div>
-                    </div>
-
                     <div className="col-12">
                         <div className="form-group">
                             <label htmlFor="description">Product description</label>
                             <input type="text" className='form-control' id='description'/>
                         </div>
                     </div>
+
+
 
 
 
@@ -59,7 +54,7 @@ function Product() {
                 <br/>
                 <div className="row">
                     <div className="col-12">
-                        <button  className='btn btn-primary col-12'>Save Customer</button>
+                        <button  className='btn btn-primary col-12'>Save Product</button>
                     </div>
                 </div>
             </div>
@@ -70,7 +65,7 @@ function Product() {
 
                 <div className="col-12">
                     <form className='col-12'>
-                        <input type="search" className='form-control' placeholder='Search Customers here'/>
+                        <input type="search" className='form-control' placeholder='Search Product here'/>
                     </form>
                 </div>
 
@@ -83,11 +78,12 @@ function Product() {
                         <thead>
                         <tr>
                             <th>#Id</th>
-                            <th>Customer Name</th>
-                            <th>Address</th>
-                            <th>Salary</th>
+                            <th>Product Name</th>
+                            <th>QTY</th>
+                            <th>Unit price</th>
                             <th>Delete Option</th>
                             <th>Update Option</th>
+                            <th>See more</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -103,6 +99,11 @@ function Product() {
 
                             <td>
                                 <button className='btn btn-outline-danger btn-sm'>Delete</button>
+
+                            </td>
+
+                            <td>
+                                <button className='btn btn-outline-info btn-sm'>View</button>
 
                             </td>
 
