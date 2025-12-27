@@ -14,7 +14,7 @@ function Order() {
                     <div className="col-12 col-sm-6 col-md-3" style={styleObj}>
                         <div className="form-group">
                             <label htmlFor="customerName">Select Customer</label>
-                            <select name="customer" id="form-control">
+                            <select className='form-control' id="customer">
                                 <option value="#">Customer 1</option>
                                 <option value="#">Customer 2</option>
                             </select>
@@ -44,7 +44,7 @@ function Order() {
                         <div className="col-12 col-sm-6 col-md-3" style={styleObj}>
                             <div className="form-group">
                                 <label htmlFor="productName">Select Product</label>
-                                <select name="" id="">
+                                <select className='form-control' id="product">
                                     <option value="#">Product 1</option>
                                     <option value="#">Product 2</option>
                                 </select>
@@ -93,7 +93,7 @@ function Order() {
                 <br/>
                 <div className="row">
                     <div className="col-12">
-                        <button  className='btn btn-primary col-12'>Save Product</button>
+                        <button  className='btn btn-primary col-12'>Save Order</button>
                     </div>
                 </div>
             </div>
@@ -104,7 +104,7 @@ function Order() {
 
                 <div className="col-12">
                     <form className='col-12'>
-                        <input type="search" className='form-control' placeholder='Search Product here'/>
+                        <input type="search" className='form-control ' placeholder='Search Order here'/>
                     </form>
                 </div>
 
