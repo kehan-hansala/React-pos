@@ -117,7 +117,7 @@ function Order() {
                         <thead>
                         <tr>
                             <th>#Id</th>
-                            <th>Product Name</th>
+                            <th>Order Name</th>
                             <th>QTY</th>
                             <th>Unit price</th>
                             <th>Delete Option</th>
