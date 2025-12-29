@@ -8,7 +8,7 @@ function Customer() {
 
                     <div className="col-12 col-sm-6 col-md-4">
                         <div className="form-group">
-                            <label htmlFor="customerName">Customer Name</label>
+                            <label htmlFor="customerName">Cus tomer Name</label>
                             <input type="text" className='form-control' id='customerName'/>
                         </div>
                     </div>

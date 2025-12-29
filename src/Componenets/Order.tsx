@@ -5,6 +5,12 @@ function Order() {
     const styleObj:React.CSSProperties={
         marginBottom:'20px'
     }
+    const bottomContext:React.CSSProperties ={
+        width: "100%",
+        display:'flex',
+        alignItems:'center',
+        justifyContent:'space-between'
+    }
     return (
         <>
             <br/>
@@ -117,38 +123,44 @@ function Order() {
                         <thead>
                         <tr>
                             <th>#Id</th>
-                            <th>Order Name</th>
-                            <th>QTY</th>
+                            <th>Product Name</th>
                             <th>Unit price</th>
+                            <th>QTY</th>
+                            <th>Total</th>
                             <th>Delete Option</th>
-                            <th>Update Option</th>
-                            <th>See more</th>
                         </tr>
                         </thead>
                         <tbody>
                         <tr>
                             <td>#10110</td>
-                            <td>nimal bandara</td>
-                            <td>colombo</td>
-                            <td>25000</td>
-                            <td>
-                                <button className='btn btn-outline-warning btn-sm'>Update</button>
-
-                            </td>
-
+                            <td>Product Nme</td>
+                            <td>250.00</td>
+                            <td>20</td>
+                            <td>20000</td>
                             <td>
                                 <button className='btn btn-outline-danger btn-sm'>Delete</button>
 
                             </td>
 
-                            <td>
-                                <button className='btn btn-outline-info btn-sm'>View</button>
 
-                            </td>
+
 
                         </tr>
                         </tbody>
                     </table>
+
+                    <br/>
+
+                    <div className="bottom-context" style={bottomContext}>
+                        <div className="tottal-outer">
+                            <h1>
+                                Total : 20000.00
+                            </h1>
+                        </div>
+                        <div className="place-order-button-context">
+                            <button className="btn btn-primary">place order</button>
+                        </div>
+                    </div>
                 </div>
             </div>
 
