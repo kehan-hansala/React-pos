@@ -1,4 +1,50 @@
+import React, {useState} from "react";
+
 function Customer() {
+
+    interface Customer{
+        _id:string,
+        name:string,
+        address:string,
+        salary:number
+    }
+
+    const Customer:React.FC= ()=>{
+
+        const [customers, setCustomers]=useState<Customer[]>([])
+
+        const [modalState, setModalState]=useState<boolean>(false);
+
+        const [name,setName]=useState('');
+        const [address,setAddress]=useState('');
+        const [salary,setSalary]=useState<number | ''>('');
+
+        const [selectedCustomerId,setSelectedCustomerId]=useState('');
+        const [updateName,setUpdateName]=useState('');
+        const [updateAddress,setUpdateAddress]=useState('');
+        const [updateSalary,setUpdateSalary]=useState<number | ''>('');
+
+
+    }
+
+    const saveCustomer= async ()=>{
+
+        try{
+
+            const response = await AxiosInstance.post('/customers/create',{
+                name,address,salary
+            });
+            console.log(response);
+
+            setName('');
+            setSalary('');
+            setAddress('');
+
+        }catch (e){
+            console.log(e)
+        }
+    }
+
 
     return (
 
@@ -8,8 +54,8 @@ function Customer() {
 
                     <div className="col-12 col-sm-6 col-md-4">
                         <div className="form-group">
-                            <label htmlFor="customerName">Cus tomer Name</label>
-                            <input type="text" className='form-control' id='customerName'/>
+                            <label htmlFor="customerName">Customer Name</label>
+                            <input value={name} onChange={(e)=>{setName(e.target.value)}} type="text" className='form-control' id='customerName'/>
                         </div>
                     </div>
 
