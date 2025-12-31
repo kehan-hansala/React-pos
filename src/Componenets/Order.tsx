@@ -136,7 +136,7 @@ function Order() {
                             <td>Product Nme</td>
                             <td>250.00</td>
                             <td>20</td>
-                            <td>20000</td>
+                            <td>20000.00</td>
                             <td>
                                 <button className='btn btn-outline-danger btn-sm'>Delete</button>
 
