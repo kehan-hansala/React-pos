@@ -1,52 +1,87 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
+import  {Modal} from "react-bootstrap";
+
+interface Customer{
+    _id:string,
+    name:string,
+    address:string,
+    salary:number
+}
+
 
 function Customer() {
 
-    interface Customer{
-        _id:string,
-        name:string,
-        address:string,
-        salary:number
-    }
+     const [customers, setCustomers]=useState<Customer[]>([])
 
-    const Customer:React.FC= ()=>{
+    const [modalState, setModalState]=useState<boolean>(false);
 
-        const [customers, setCustomers]=useState<Customer[]>([])
+    const [name,setName]=useState('');
+    const [address,setAddress]=useState('');
+    const [salary,setSalary]=useState<number | ''>('');
 
-        const [modalState, setModalState]=useState<boolean>(false);
+    const [selectedCustomerId,setSelectedCustomerId]=useState('');
+    const [updateName,setUpdateName]=useState('');
+    const [updateAddress,setUpdateAddress]=useState('');
+    const [updateSalary,setUpdateSalary]=useState<number | ''>('');
 
-        const [name,setName]=useState('');
-        const [address,setAddress]=useState('');
-        const [salary,setSalary]=useState<number | ''>('');
+    useEffect(()=>{
+        findAllCustomers();
+    }, [])
 
-        const [selectedCustomerId,setSelectedCustomerId]=useState('');
-        const [updateName,setUpdateName]=useState('');
-        const [updateAddress,setUpdateAddress]=useState('');
-        const [updateSalary,setUpdateSalary]=useState<number | ''>('');
-
-
-    }
-
-    const saveCustomer= async ()=>{
-
+    const updateCustomer= async ()=>{
         try{
 
-            const response = await AxiosInstance.post('/customers/create',{
-                name,address,salary
+            await AxiosInstance.put('/customers/update/'+selectedCustomerId,{
+                name:updateName,address:updateAddress,salary:updateSalary
             });
-            console.log(response);
-
-            setName('');
-            setSalary('');
-            setAddress('');
+            setModalState(false);
+            findAllCustomers();
 
         }catch (e){
             console.log(e)
         }
     }
 
+    const findAllCustomers= async ()=>{
+        const response = await AxiosInstance.get('/customers/find-all?searchText=&page=1&size=10');
+        setCustomers(response.data);
+    }
 
-    return (
+    const deleteCustomer= async (id: string)=>{
+        await AxiosInstance.delete('/customers/delete-by-id/'+id);
+    }
+
+    const loadModal= async (id: string)=>{
+        const customer = await AxiosInstance.get('/customers/find-by-id/'+id);
+        console.log(customer.data)
+        setSelectedCustomerId(customer.data._id)
+        setUpdateName(customer.data.name)
+        setUpdateAddress(customer.data.address)
+        setUpdateSalary(parseFloat(customer.data.salary))
+
+        setModalState(true);
+    }
+
+    const saveCustomer= async ()=>{
+        
+       try{
+
+          const response = await AxiosInstance.post('/customers/create',{
+               name,address,salary
+           });
+           console.log(response);
+
+          setName('');
+          setSalary('');
+          setAddress('');
+
+       }catch (e){
+           console.log(e)
+       }
+    }
+
+    
+ return (
 
         <>
             <div className="container">
@@ -55,7 +90,7 @@ function Customer() {
                     <div className="col-12 col-sm-6 col-md-4">
                         <div className="form-group">
                             <label htmlFor="customerName">Customer Name</label>
-                            <input value={name} onChange={(e)=>{setName(e.target.value)}} type="text" className='form-control' id='customerName'/>
+                            <input  type="text" className='form-control' id='customerName'/>
                         </div>
                     </div>
 
@@ -132,6 +167,49 @@ function Customer() {
                     </table>
                 </div>
             </div>
+
+            <Modal show={modalState}>
+
+                <div className='p-4'>
+                    <h2>Update Customer</h2>
+                    <hr/>
+
+                    <div className="col-12">
+                        <div className="form-group">
+                            <input type="text" defaultValue={updateName}
+                                   onChange={(e)=>setUpdateName(e.target.value)}
+                                   className='form-control'/>
+                        </div>
+                        <br/>
+                    </div>
+                    <div className="col-12">
+                        <div className="form-group">
+                            <input
+                                onChange={(e)=>setUpdateAddress(e.target.value)}
+                                type="text" defaultValue={updateAddress} className='form-control'/>
+                        </div>
+                        <br/>
+                    </div>
+                    <div className="col-12">
+                        <div className="form-group">
+                            <input
+                                onChange={(e)=>setUpdateSalary(parseFloat(e.target.value))}
+                                type="text" defaultValue={updateSalary} className='form-control'/>
+                        </div>
+                        <br/>
+                    </div>
+                    <div className="col-12">
+                        <button type='button' className='btn-success btn col-12'
+                        onClick={()=>updateCustomer()}
+                        >Update Customer</button>
+                        <br/>
+                        <br/>
+                        <button type='button' className='btn-secondary btn col-12' onClick={()=>setModalState(false)}>Close Modal</button>
+                    </div>
+
+                </div>
+
+            </Modal>
 
         </>
 
