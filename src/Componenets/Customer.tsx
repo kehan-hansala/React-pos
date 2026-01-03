@@ -206,6 +206,8 @@ function Customer() {
                         <br/>
                         <button type='button' className='btn-secondary btn col-12' onClick={()=>setModalState(false)}>Close Modal</button>
                     </div>
+                    console.log(selectedCustomerId);
+                    
 
                 </div>
 
