@@ -151,7 +151,7 @@ function Customer() {
                             <td>#10110</td>
                             <td>nimal bandara</td>
                             <td>colombo</td>
-                            <td>25000</td>
+                            <td>28000</td>
                             <td>
                                 <button className='btn btn-outline-warning btn-sm'>Update</button>
 
