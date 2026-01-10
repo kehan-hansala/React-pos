@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from "react";
 import  {Modal} from "react-bootstrap";
-
+import axios from "axios";
 interface Customer{
     _id:string,
     name:string,
@@ -66,10 +66,10 @@ function Customer() {
         
        try{
 
-          const response = await AxiosInstance.post('/customers/create',{
-               name,address,salary
+        const response = await axios.post('http://localhost:3000/api/v1/customers/create',{
+                name,address,salary
            });
-           console.log(response);
+           console.log(response.data);
 
           setName('');
           setSalary('');
@@ -90,21 +90,21 @@ function Customer() {
                     <div className="col-12 col-sm-6 col-md-4">
                         <div className="form-group">
                             <label htmlFor="customerName">Customer Name</label>
-                            <input  type="text" className='form-control' id='customerName'/>
+                           <input value={name} onChange={(e)=>{setName(e.target.value)}} type="text" className='form-control' id='customerName'/>
                         </div>
                     </div>
 
                     <div className="col-12 col-sm-6 col-md-4">
                         <div className="form-group">
                             <label htmlFor="customerName">Customer Address</label>
-                            <input type="text" className='form-control' id='customerAddress'/>
+                             <input value={address} onChange={(e)=>{setAddress(e.target.value)}} type="text" className='form-control' id='customerAddress'/>
                         </div>
                     </div>
 
                     <div className="col-12 col-sm-6 col-md-4">
                         <div className="form-group">
                             <label htmlFor="customerName">Customer Salary</label>
-                            <input type="text" className='form-control' id='customerSalary'/>
+                            <input value={salary} onChange={(e)=>{setSalary(e.target.value==''?'':parseFloat(e.target.value))}} type="number" className='form-control' id='customerSalary'/>
                         </div>
                     </div>
 
@@ -115,7 +115,7 @@ function Customer() {
                 <br/>
                 <div className="row">
                     <div className="col-12">
-                        <button  className='btn btn-primary col-12'>Save Customer</button>
+                        <button onClick={saveCustomer}  className='btn btn-primary col-12'>Save Customer</button>
                     </div>
                 </div>
             </div>
@@ -147,22 +147,28 @@ function Customer() {
                         </tr>
                         </thead>
                         <tbody>
-                        <tr>
-                            <td>#10110</td>
-                            <td>nimal bandara</td>
-                            <td>colombo</td>
-                            <td>28000</td>
-                            <td>
-                                <button className='btn btn-outline-warning btn-sm'>Update</button>
-
-                            </td>
-
-                            <td>
-                                <button className='btn btn-outline-danger btn-sm'>Delete</button>
-
-                            </td>
-
-                        </tr>
+                            {customers.map((customer, index)=>
+                                <tr key={index}>
+                                    <td>#{index}</td>
+                                    <td>{customer.name}</td>
+                                    <td>{customer.address}</td>
+                                    <td>{customer.salary}</td>
+                                    <td>
+                                        <button
+                                            onClick={()=>{
+                                                if (confirm('are you sure?')){
+                                                    deleteCustomer(customer._id)
+                                                }}}
+                                            className='btn btn-outline-danger btn-sm'>Delete</button>
+                                    </td>
+                                    <td>
+                                        <button onClick={()=>{
+                                            loadModal(customer._id);
+                                        }} className='btn btn-outline-success btn-sm'>Update</button>
+                                    </td>
+                                </tr>
+                            )}
+                        
                         </tbody>
                     </table>
                 </div>
