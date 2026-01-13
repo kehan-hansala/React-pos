@@ -37,7 +37,7 @@ function Product() {
 
                     <div className="col-12 col-sm-6 col-md-4" style={styleObj}>
                         <div className="form-group">
-                            <label htmlFor="image">Product image</label>
+                            <label htmlFor="image">Product Image</label>
                             <input type="file" className='form-control' id='image'/>
                         </div>
                     </div>
